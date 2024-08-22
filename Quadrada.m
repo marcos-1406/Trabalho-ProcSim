@@ -11,5 +11,26 @@ for i = 100:100:(Fs*2-100)
     end
 end
 
-plot(x);
-sound(x, Fs);
+fourier = fft(x);
+
+figure;
+subplot(3,1,1);
+plot(linspace(0,2,length(x)),x);
+title("sinal sintetizado - Quadrada")
+xlabel("t(s)")
+ylabel("Sinal")
+
+
+subplot(3,1,2);
+plot(Fs/(length(x)+1)*(0:length(x)-1), abs(fourier)/max(abs(fourier)),"LineWidth",3)
+title("Resposta em frequência (Quadrada) - Magnitude")
+xlabel("freq (Hz)")
+ylabel("|fft(X)|")
+axis([0 Fs 0 1]);
+
+subplot(3,1,3);
+plot(Fs/(length(x)+1)*(0:length(x)-1), angle(fourier)*180/pi);
+title("Resposta em frequência (Quadrada) - Fase")
+xlabel("freq (Hz)")
+ylabel("Angulo (°)")
+axis([0 Fs 0 max(angle(fourier)*180/pi)]);
