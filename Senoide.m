@@ -11,20 +11,27 @@ for i = 100:100:(Fs*2-100)
     end
 end
 
-Y = fft(x);
-L = length(Y);
+sound(x, Fs);
 
-P2 = abs(Y/L);
-P1 = P2(1:L/2+1);
-P1(2:end-1) = 2*P1(2:end-1);
+[X,freq, table1] = my_fft(x, Fs);
 
-f = Fs/L*(0:(L/2));
-
-figure();
-plot(f,P1); 
-title("Resposta em frequência (Senóide) - Magnitude")
-xlabel("freq (Hz)")
-ylabel("|fft(X)|")
-
-figure;
-plot(angle(Y/L))
+% Y = fft(x);
+% 
+% figure();
+% plot(x);
+% 
+% Mag = abs(Y);
+% Fase = angle(Y);
+% 
+% 
+% figure();
+% plot(20*log(Mag)); 
+% title("Resposta em frequência (Senóide) - Magnitude")
+% xlabel("freq (Hz)")
+% ylabel("|fft(X)|")
+% 
+% figure;
+% plot(Fase)
+% title("Resposta em frequência (Senóide) - Fase")
+% xlabel("freq (Hz)")
+% ylabel("Theta (rad)")
